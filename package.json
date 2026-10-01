@@ -1,0 +1,55 @@
+{
+  "name": "srujan-portfolio-v2",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "node --test --test-concurrency=1 tests/*.test.mjs",
+    "test:layout": "node --test tests/layout.test.mjs",
+    "test:cursor": "node --test tests/cursor.test.mjs",
+    "test:hero": "node --test tests/hero.test.mjs",
+    "test:about": "node --test tests/about.test.mjs",
+    "test:projects": "node --test tests/projects.test.mjs",
+    "test:cases": "node --test tests/cases.test.mjs",
+    "test:timeline": "node --test tests/timeline.test.mjs",
+    "test:lab": "node --test tests/lab.test.mjs",
+    "test:stack": "node --test tests/stack.test.mjs",
+    "test:contact": "node --test tests/contact.test.mjs",
+    "test:webgl": "node --test tests/webgl.test.mjs",
+    "test:interactions": "node --test tests/interactions.test.mjs",
+    "test:responsive": "node --test tests/responsive.test.mjs",
+    "test:a11y": "node --test tests/accessibility.test.mjs",
+    "test:perf": "node --test tests/performance.test.mjs",
+    "test:seo": "node --test tests/seo.test.mjs",
+    "test:motion": "node --test tests/motion-qa.test.mjs",
+    "test:browser": "node --test tests/browser-qa.test.mjs",
+    "test:error": "node --test tests/error-qa.test.mjs"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.15.0",
+    "next": "16.3.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "lighthouse": "^13.5.0",
+    "playwright": "^1.63.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "^5"
+  }
+}

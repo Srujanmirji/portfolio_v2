@@ -1,0 +1,148 @@
+@layer components {
+  .projects-stage { padding-block: var(--space-8); }
+  .projects-heading { display: grid; gap: var(--space-4); }
+  .projects-heading .section-title { font-size: var(--type-project-heading); }
+  .project-navigation { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); margin-block: var(--space-6); border-block: var(--border-width) solid var(--border); }
+  .project-current, .project-steps, .project-number, .project-categories, .project-technologies, .project-preview, .project-image-placeholder {
+    font-family: var(--font-geist-mono), monospace;
+    font-size: var(--type-xs);
+    letter-spacing: var(--tracking-label);
+  }
+  .project-current { padding-block: var(--space-3); font-variant-numeric: tabular-nums; }
+  .project-current span { color: var(--muted); margin-left: var(--space-4); }
+  .project-steps { display: none; flex-wrap: wrap; max-width: 100%; }
+  [data-ready] .project-steps { display: flex; }
+  .project-steps button {
+    display: grid;
+    place-items: center;
+    min-width: var(--target-min);
+    min-height: var(--target-min);
+    background: transparent;
+    border: 0;
+    border-bottom: var(--border-width) solid transparent;
+    transform: translateY(0);
+    transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  }
+  .project-steps button[aria-current], .project-steps button:hover { color: var(--accent); border-color: var(--accent); }
+  @media (hover: hover) and (pointer: fine) {
+    .project-steps button:hover { transform: translateY(-1px); }
+    .project-steps button:active { transform: translateY(0); }
+  }
+  .project-track { position: relative; display: grid; gap: var(--space-16); }
+  .project-card {
+    min-width: 0;
+    display: grid;
+    gap: var(--space-6);
+    padding-block: var(--space-4);
+    border-bottom: var(--border-width) solid var(--border);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+  .project-information { display: flex; flex-direction: column; align-items: start; gap: var(--space-4); min-width: 0; }
+  .project-number { color: var(--accent); }
+  .project-title {
+    font-size: var(--type-project-title);
+    font-weight: var(--weight-display);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-heading);
+    overflow-wrap: anywhere;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .project-description { font-size: var(--type-lead); max-width: var(--container-aside); }
+  .project-meta { margin-top: auto; }
+  .project-categories { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding: 0; margin: 0; list-style: none; color: var(--muted); }
+  .project-technologies { color: var(--muted); margin-top: var(--space-3); }
+  .project-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-6); margin-top: var(--space-4); }
+  .project-link, .project-preview {
+    align-items: center;
+    gap: var(--space-6);
+    min-height: var(--target-min);
+    background: transparent;
+    border: 0;
+    border-bottom: var(--border-width) solid var(--muted);
+    text-transform: uppercase;
+    text-align: left;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: var(--type-xs);
+    letter-spacing: var(--tracking-label);
+    transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+  }
+  .project-link { display: inline-flex; }
+  .project-link > span[aria-hidden="true"] {
+    display: inline-block;
+    transform: translate(0, 0);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+  .project-preview { display: none; color: var(--muted); }
+  [data-ready] .project-preview { display: inline-flex; }
+  .project-link:hover, .project-preview:hover, .project-preview:focus-visible { color: var(--accent); border-color: var(--accent); }
+  @media (hover: hover) and (pointer: fine) {
+    .project-link:hover > span[aria-hidden="true"] { transform: translate(2px, -2px); }
+  }
+  .project-media {
+    min-width: 0;
+    aspect-ratio: var(--project-media-ratio);
+    display: grid;
+    place-items: center;
+    background: var(--project-surface);
+    border: var(--border-width) solid var(--border);
+    overflow: hidden;
+    transition: border-color var(--duration-base) var(--ease-out);
+  }
+  .project-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(1);
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+  .project-image-placeholder { color: var(--muted); text-align: center; line-height: var(--leading-body); text-transform: uppercase; padding: var(--space-6); }
+  .project-image-placeholder span { color: var(--foreground); }
+  .project-card:hover .project-media, .project-card:focus-within .project-media { border-color: var(--muted); }
+  @media (hover: hover) and (pointer: fine) {
+    .project-card:hover .project-media img { transform: scale(1.025); }
+  }
+  .projects-stage[data-horizontal] { min-height: calc(100svh - var(--header-height)); display: flex; flex-direction: column; }
+  [data-horizontal] .projects-viewport { overflow: clip; padding: var(--space-2); margin-inline: calc(-1 * var(--space-2)); margin-block: auto; }
+  [data-horizontal] .project-track { display: flex; align-items: stretch; gap: var(--space-16); }
+  [data-horizontal] .project-card { flex: 0 0 100%; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: var(--space-8); border: 0; padding: var(--space-4) var(--space-2); transform: scale(var(--project-inactive-scale)); opacity: var(--project-inactive-opacity); transition: transform var(--duration-base) var(--ease-out), opacity var(--duration-base); }
+  [data-horizontal] .project-card[data-active="true"] { transform: scale(1); opacity: 1; }
+  [data-horizontal] .project-card > .project-media { max-height: var(--project-media-height); }
+  [data-horizontal] .project-media img { filter: blur(var(--project-inactive-blur)); transition: filter var(--duration-base); }
+  [data-horizontal] [data-active="true"] .project-media img { filter: none; }
+  [data-horizontal] .project-title { transform: translateY(var(--space-3)); transition: transform var(--duration-base) var(--ease-out); }
+  [data-horizontal] [data-active="true"] .project-title { transform: none; }
+  [data-horizontal] .project-meta { opacity: 0; transition: opacity var(--duration-base); }
+  [data-horizontal] [data-active="true"] .project-meta { opacity: 1; }
+  .project-dialog { color: var(--foreground); background: var(--background); border: var(--border-width) solid var(--muted); padding: var(--space-6); margin: auto; width: min(calc(100% - var(--space-8)), var(--container-reading)); max-height: calc(100dvh - var(--space-12)); overflow-y: auto; overscroll-behavior: contain; }
+  .project-dialog[open] { display: grid; gap: var(--space-4); }
+  .project-dialog::backdrop { background: color-mix(in srgb, var(--background) 85%, transparent); }
+  .project-dialog-close {
+    position: sticky;
+    top: 0;
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-6);
+    min-height: var(--target-min);
+    padding-inline: var(--space-3);
+    background: var(--background);
+    border: var(--border-width) solid var(--border);
+    transition: border-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out), background-color var(--duration-fast) var(--ease-out);
+  }
+  .project-dialog-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background-color: color-mix(in srgb, var(--accent) 6%, var(--background));
+  }
+  .project-dialog-close:active {
+    background-color: color-mix(in srgb, var(--accent) 12%, var(--background));
+  }
+  .project-preview-note { color: var(--muted); }
+  .project-dialog a { display: inline-flex; align-items: center; min-height: var(--target-min); }
+}
+
+html { scrollbar-gutter: stable; }
+html:has(.project-dialog[open]) { overflow: hidden; }
+html:has(.project-dialog[open]) .custom-cursor { display: none; }
+html[data-custom-cursor] .project-dialog[open] { cursor: auto; }
+html[data-custom-cursor] .project-dialog[open] :is(button, a) { cursor: pointer; }

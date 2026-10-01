@@ -1,0 +1,72 @@
+@layer components {
+  .lab-heading { display: grid; gap: var(--space-6); padding-block: var(--space-16); }
+  .lab-note, .lab-count, .lab-card-meta, .lab-filter, .lab-details summary { font-family: var(--font-geist-mono), monospace; font-size: var(--type-xs); letter-spacing: var(--tracking-label); }
+  .lab-note, .lab-count, .lab-card-meta { color: var(--muted); }
+  .lab-stage { padding-bottom: var(--space-16); }
+  .lab-filter { display: none; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-4); border-block: var(--border-width) solid var(--border); }
+  [data-ready] .lab-filter { display: flex; }
+  .lab-filter button {
+    min-height: var(--target-min);
+    padding-inline: var(--space-3);
+    background: transparent;
+    border: 0;
+    border-bottom: var(--border-width) solid transparent;
+    text-align: left;
+    transform: translateY(0);
+    transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  }
+  .lab-filter button[aria-pressed="true"], .lab-filter button:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  @media (hover: hover) and (pointer: fine) {
+    .lab-filter button:hover { transform: translateY(-1px); }
+    .lab-filter button:active { transform: translateY(0); }
+  }
+  .lab-count { margin-block: var(--space-6) var(--space-8); }
+  .lab-grid { --lab-motion-distance: var(--space-2); display: grid; gap: var(--space-12) var(--grid-gap); }
+  .lab-card { min-width: 0; display: grid; align-content: start; gap: var(--space-6); padding-top: var(--space-6); border-top: var(--border-width) solid var(--border); transition: border-color var(--duration-fast); }
+  .lab-card:hover, .lab-card:focus-within { border-color: var(--muted); }
+  .lab-card-meta { display: grid; gap: var(--space-2); }
+  .lab-card-meta span { font-size: var(--type-xs); }
+  .lab-card h3 { font-size: var(--type-lab-title); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); overflow-wrap: anywhere; }
+  .lab-details summary {
+    display: list-item;
+    min-height: var(--target-min);
+    cursor: pointer;
+    padding-block: var(--space-3);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .lab-details summary::marker { color: var(--accent); }
+  .lab-details summary, .lab-detail-content a { scroll-margin-block: var(--space-8); }
+  .lab-details summary:hover, .lab-details[open] summary { color: var(--accent); }
+  .lab-detail-content { display: grid; gap: var(--space-4); padding-top: var(--space-3); }
+  .lab-detail-content p { color: var(--muted); max-width: var(--container-reading); overflow-wrap: anywhere; }
+  .lab-detail-content a {
+    display: inline-flex;
+    justify-self: start;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--target-min);
+    border-bottom: var(--border-width) solid var(--muted);
+    transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+  }
+  .lab-detail-content a > span[aria-hidden="true"] {
+    display: inline-block;
+    transform: translate(0, 0);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .lab-detail-content a:hover { color: var(--accent); border-color: var(--accent); }
+    .lab-detail-content a:hover > span[aria-hidden="true"] { transform: translate(2px, -2px); }
+  }
+  .lab-empty { color: var(--muted); grid-column: 1 / -1; }
+  @media (min-width: 48rem) { .lab-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 64rem) {
+    .lab-heading { padding-block: var(--space-24); }
+    .lab-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: var(--space-16); }
+    .lab-card:nth-child(6n + 1) { grid-column: 1 / 9; }
+    .lab-card:nth-child(6n + 2) { grid-column: 9 / -1; margin-top: var(--space-24); }
+    .lab-card:nth-child(6n + 3) { grid-column: 1 / 6; }
+    .lab-card:nth-child(6n + 4) { grid-column: 7 / -1; margin-top: var(--space-16); }
+    .lab-card:nth-child(6n + 5) { grid-column: 1 / 8; }
+    .lab-card:nth-child(6n + 6) { grid-column: 9 / -1; margin-top: var(--space-8); }
+  }
+}

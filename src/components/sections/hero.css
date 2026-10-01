@@ -1,0 +1,96 @@
+@layer components {
+  .hero-stage {
+    display: grid;
+    gap: var(--space-8);
+    padding-block: var(--space-8);
+    min-height: calc(100svh - var(--header-height));
+    background: var(--background);
+  }
+  .hero-positioning {
+    max-width: var(--container-aside);
+    color: var(--muted);
+    font: var(--weight-body) var(--type-sm) / var(--leading-body) var(--font-geist-mono), monospace;
+  }
+  .hero-composition { position: relative; min-width: 0; }
+  .hero-name {
+    position: relative;
+    z-index: var(--z-content);
+    width: fit-content;
+    max-width: 100%;
+    font-size: var(--type-hero);
+    font-weight: var(--weight-display);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    transform-origin: left top;
+  }
+  .hero-name > span { display: block; transform-origin: left center; }
+  .hero-last-name { color: var(--accent); }
+  .hero-visual {
+    position: relative;
+    width: min(80%, var(--hero-portrait-width));
+    margin-top: var(--space-6);
+    margin-left: auto;
+    transform-origin: right center;
+  }
+  .hero-portrait { position: relative; aspect-ratio: var(--hero-portrait-ratio); overflow: hidden; }
+  /* Crop only the main pose from the supplied sheet; keep the original asset intact. */
+  .hero-portrait img { object-fit: cover; object-position: left center; }
+  .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; }
+  .hero-canvas[data-state="ready"] { opacity: 1; }
+  .hero-accent {
+    position: absolute;
+    inset: var(--space-8) calc(-1 * var(--space-2)) calc(-1 * var(--space-2)) auto;
+    width: var(--space-4);
+    background: var(--accent);
+    transform-origin: bottom;
+  }
+  .hero-footer {
+    display: grid;
+    gap: var(--space-6);
+    border-top: var(--border-width) solid var(--border);
+    padding-top: var(--space-6);
+  }
+  .hero-description { max-width: var(--container-aside); font-size: var(--type-lead); text-wrap: pretty; }
+  .hero-actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); }
+  .hero-actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: var(--target-min);
+    min-width: var(--target-min);
+    font-family: var(--font-geist-mono), monospace;
+    font-size: var(--type-xs);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .hero-actions a:hover, .hero-actions a:focus-visible { color: var(--accent); }
+  .hero-actions span {
+    font-size: var(--type-body);
+    display: inline-block;
+    transform: translate(0, 0);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .hero-actions a:first-child:hover span { transform: translateY(3px); }
+    .hero-actions a:last-child:hover span { transform: translateX(3px); }
+  }
+  @media (min-width: 64rem) and (min-height: 42rem) {
+    .hero-stage { grid-template-rows: auto 1fr auto; min-height: max(var(--hero-min-height), calc(100svh - var(--header-height))); }
+    .hero-positioning { max-width: none; }
+    .hero-composition { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; }
+    .hero-name { grid-area: 1 / 1 / 2 / 10; }
+    .hero-visual {
+      grid-area: 1 / 8 / 2 / -1;
+      width: min(100%, var(--hero-desktop-portrait-width));
+      margin-top: 0;
+    }
+    .hero-footer { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--grid-gap); align-items: end; }
+    .hero-description { grid-column: 1 / 7; }
+    .hero-actions { grid-column: 9 / -1; flex-direction: column; align-items: end; gap: 0; }
+  }
+}

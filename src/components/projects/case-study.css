@@ -1,0 +1,77 @@
+@layer components {
+  .case-study { padding-block: var(--space-8) var(--space-16); }
+  .case-hero { display: grid; gap: var(--space-6); }
+  .case-back {
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+    gap: var(--space-3);
+    min-height: var(--target-min);
+    font-family: var(--font-geist-mono), monospace;
+    font-size: var(--type-sm);
+    border-bottom: var(--border-width) solid var(--muted);
+    transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+  }
+  .case-back > span[aria-hidden="true"] {
+    display: inline-block;
+    transform: translateX(0);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .case-back:hover { color: var(--accent); border-color: var(--accent); }
+    .case-back:hover > span[aria-hidden="true"] { transform: translateX(-4px); }
+    .case-back:active > span[aria-hidden="true"] { transform: translateX(-6px); }
+  }
+  .case-title { font-size: var(--type-case-title); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); line-height: var(--leading-heading); overflow-wrap: anywhere; }
+  .case-title > span { color: var(--accent); }
+  .case-description { font-size: var(--type-lead); max-width: var(--container-reading); }
+  .case-hero > .project-media {
+    aspect-ratio: var(--case-media-ratio);
+    margin-top: var(--space-6);
+    transition: border-color var(--duration-base) var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .case-hero > .project-media:hover { border-color: var(--muted); }
+  }
+  .case-chapters { margin-top: var(--space-16); }
+  .case-chapter { display: grid; gap: var(--space-6); padding-block: var(--space-8); border-top: var(--border-width) solid var(--border); }
+  .case-chapter-heading { display: grid; align-content: start; gap: var(--space-3); }
+  .case-chapter-heading h2 { font-size: var(--type-case-heading); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); }
+  .case-chapter-content { display: grid; align-content: start; gap: var(--space-6); }
+  .case-chapter-content > p { max-width: var(--container-reading); }
+  .case-pending { color: var(--muted); }
+  .case-features { list-style: none; padding: 0; margin: 0; counter-reset: feature; display: grid; gap: var(--space-6); }
+  .case-features li { counter-increment: feature; display: flex; align-items: baseline; gap: var(--space-4); font-size: var(--type-lead); line-height: var(--leading-heading); }
+  .case-features li::before { content: counter(feature, decimal-leading-zero); color: var(--accent); font-family: var(--font-geist-mono), monospace; font-size: var(--type-xs); letter-spacing: var(--tracking-label); }
+  .case-links a {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--target-min);
+    border-bottom: var(--border-width) solid var(--muted);
+    transform: translate(0, 0);
+    transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .case-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translate(2px, -2px);
+    }
+    .case-links a:active {
+      transform: translate(3px, -3px);
+    }
+  }
+  .case-footer { margin-top: var(--space-8); border-top: var(--border-width) solid var(--border); padding-top: var(--space-8); }
+  @media (min-width: 48rem) {
+    .case-hero { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--grid-gap); }
+    .case-hero > * { grid-column: 1 / -1; }
+    .case-description { grid-column: 1 / 8; }
+    .case-categories { grid-column: 9 / -1; align-self: end; justify-content: end; }
+    .case-chapter { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--grid-gap); padding-block: var(--space-12); }
+    .case-chapter-heading { grid-column: 1 / 5; }
+    .case-chapter-content { grid-column: 5 / -1; }
+    .case-features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+}
