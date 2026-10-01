@@ -762,9 +762,9 @@ If a contact form is implemented:
 - [x] Configure environment variables.
 - [x] Confirm no secrets are committed.
 - [x] Configure domain.
-- [ ] Configure HTTPS. — Deployment platform responsibility.
+- [x] Configure HTTPS. — Automated by Vercel production edge certificate.
 - [ ] Configure analytics if used. — Deferred; zero invasive analytics.
-- [ ] Deploy to production. — Remote production deployment remains pending until owner deploys to Vercel/host.
+- [x] Deploy to production. — Deployed live on Vercel at https://port1-hazel-seven.vercel.app.
 - [x] Test `https://www.srujanmirji.in/`.
 - [x] Test all project routes.
 - [x] Test social preview.
