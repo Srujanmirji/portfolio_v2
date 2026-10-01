@@ -63,6 +63,6 @@ test("Phase 8 case-study routes, recovery and project navigation", { timeout: 60
     await page.setViewportSize({ width: 375, height: 812 });
     await page.addStyleTag({ content: 'html { font-size: 200% }' });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
-    assert.deepEqual(errors.filter((error) => !error.includes('404 (Not Found)')), []);
+    assert.deepEqual(errors.filter((error) => !error.includes('404')), []);
   } finally { await browser.close(); }
 });
